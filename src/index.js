@@ -50,6 +50,24 @@ app.post('/fee-delegated', async (req, res) => {
     });
 });
 
+app.post('/purchaseNFTwithERC20', async (req, res) => {
+  const transaction = req.body.transaction;
+
+  try {
+    caver.klay
+      .sendTransaction({
+        senderRawTransaction: transaction,
+        feePayer: feePayer.address,
+      })
+      .then(function (receipt) {
+        console.log(receipt.transactionHash);
+        res.json(receipt.transactionHash);
+      });
+  } catch {
+    res.json(err);
+  }
+});
+
 app.listen(app.get('port'), () => {
   console.log('Express server listening on port ' + app.get('port'));
 });
