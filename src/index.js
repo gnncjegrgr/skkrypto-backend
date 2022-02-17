@@ -36,7 +36,7 @@ app.post('/test-api', async (req, res) => {
 });
 
 app.post('/fee-delegated', async (req, res) => {
-  const transaction = req.body.caver;
+  const transaction = req.body.transaction;
 
   console.log('transaction', transaction);
   caver.klay
